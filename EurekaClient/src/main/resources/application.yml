@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: demo01
+eureka:
+  client:
+    service-url:
+      # 下面是默认值
+      defaultZone: http://eurekaserver1:8761/eureka/,http://eurekaserver2:8762/eureka/
+#      defaultZone: http://localhost:8088/eureka/
+

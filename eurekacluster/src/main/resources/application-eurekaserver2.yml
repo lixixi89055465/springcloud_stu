@@ -1,0 +1,15 @@
+spring:
+  application:
+    # 名字不要是下划线，要中划线
+    name: eureka2
+
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: eurekaserver2
+  client:
+    service-url:
+      #访问其它节点的url
+      defaultZone: http://eurekaserver1:8761/eureka/

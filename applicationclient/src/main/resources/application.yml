@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: fallback-demo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eurekaserver1:8761/eureka/
+
+
+server:
+  port: 8081
+

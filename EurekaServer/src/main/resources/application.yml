@@ -1,0 +1,19 @@
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    # 如果配置的是8761,不需要配置
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8761
+#server:
+#  port: 8088
+management:
+  endpoints:
+    # 所有功能默认开启
+    enabled-by-default: true
+    # 显示所有已启用功能
+    web:
+      exposure:
+        include: '*'
