@@ -1,3 +1,4 @@
+
 eureka:
   client:
     register-with-eureka: false
@@ -17,3 +18,4 @@ management:
     web:
       exposure:
         include: '*'
+
