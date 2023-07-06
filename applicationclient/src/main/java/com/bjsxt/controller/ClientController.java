@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-@Controller
+@RestController
 public class ClientController {
 
     @Autowired
@@ -35,5 +36,18 @@ public class ClientController {
             e.printStackTrace();
         }
         return "OK";
+    }
+
+    @RequestMapping("/thread")
+    public String thread() {
+        clientService.thread1();
+        clientService.thread2();
+        return "OK";
+    }
+
+    @RequestMapping("/sem")
+    public String semaphore() {
+        clientService.semaphore();
+        return "semaphore :OK";
     }
 }

@@ -61,6 +61,50 @@ public class ClientServiceImpl implements ClientService {
         return null;
     }
 
+    @HystrixCommand(groupKey = "jqk", commandKey = "abc", threadPoolKey = "jqk", threadPoolProperties = {
+            @HystrixProperty(name = "coreSize", value = "8"),
+            @HystrixProperty(name = "maxQueueSize", value = "5"),
+            @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+            @HystrixProperty(name = "queueSizeRejectionThreshold", value = "5"),
+    })
+    @Override
+    public String thread1() {
+        System.out.println(Thread.currentThread().getName());
+        return null;
+    }
+
+    @HystrixCommand(groupKey = "jqk", commandKey = "thread2", threadPoolKey = "jqk2", threadPoolProperties = {
+            @HystrixProperty(name = "coreSize", value = "8"),
+            @HystrixProperty(name = "maxQueueSize", value = "5"),
+            @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+            @HystrixProperty(name = "queueSizeRejectionThreshold", value = "5"),
+    })
+    @Override
+    public String thread2() {
+        System.out.println(Thread.currentThread().getName());
+        return null;
+    }
+
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_STRATEGY,
+                    value = "SEMAPHORE"),
+            @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_SEMAPHORE_MAX_CONCURRENT_REQUESTS, value = "10")
+    }, fallbackMethod = "abc")
+    @Override
+    public String semaphore() {
+        System.out.println("执行了信号量隔离!");
+        try {
+            Thread.sleep(900);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "正常执行";
+    }
+
+    public String abc() {
+        return "abc降级!";
+    }
+
     @HystrixCommand
     public List<String> mybatch(List<String> names) {
         System.out.println("合并后的参数" + names);

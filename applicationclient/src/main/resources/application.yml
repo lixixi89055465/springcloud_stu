@@ -8,5 +8,13 @@ eureka:
 
 
 server:
-  port: 8081
+  port: 8083
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
