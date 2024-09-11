@@ -2,6 +2,8 @@ package com.zhouyu.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,9 +15,11 @@ import org.springframework.stereotype.Component;
  * @modifiedBy：
  * @version: 1.0
  */
-//@Component
-//@Aspect
+@Aspect
+@Component
+@Configuration
 public class ZhouyuAspect {
+    @Before("execution(public void com.zhouyu.service.UserService.test())")
     public void zhouyuBefore(JoinPoint joinPoint) {
         System.out.println("zhouyuBefore");
     }
