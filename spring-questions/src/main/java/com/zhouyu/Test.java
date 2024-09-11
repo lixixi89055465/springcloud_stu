@@ -17,17 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Test {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-
-//        Object o = new Object();
-//        applicationContext.getBeanFactory().registerSingleton("xxx", o);
         UserService userService = (UserService) applicationContext.getBean("userService");
-//        UserService userService1 = (UserService) applicationContext.getBean("userService");
-//        UserService userService2 = (UserService) applicationContext.getBean("userService");
         userService.test();
-//        userService1.test();
-//        userService2.test();
-//        Object o1 = applicationContext.getBean("xxx");
-//        System.out.println(o1);
     }
 
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -23,6 +25,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements InitializingBean {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private User admin;
+
+    public void test(){
+        System.out.println(admin);
+    }
+    @PostConstruct
+    public void a(){
+
+    }
 
 //    public UserService() {
 //        System.out.println(0);
@@ -57,15 +69,15 @@ public class UserService implements InitializingBean {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private UserService userService;
+//
+//    @Transactional
+//    public void test() {
+//        jdbcTemplate.execute("INSERT INTO t1(col1) VALUES('c')");
+//        userService.a();
+//    }
 
-    @Transactional
-    public void test() {
-        jdbcTemplate.execute("INSERT INTO t1(col1) VALUES('c')");
-        userService.a();
-    }
-
-    @Transactional(propagation = Propagation.NEVER)
-    public void a() {
-        jdbcTemplate.execute("INSERT INTO t1(col1) VALUES('f')");
-    }
+//    @Transactional(propagation = Propagation.NEVER)
+//    public void a() {
+//        jdbcTemplate.execute("INSERT INTO t1(col1) VALUES('f')");
+//    }
 }
